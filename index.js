@@ -16,68 +16,113 @@ app.use(express.json());
 app.get("/", (req, res)=>{
     try {
         const apiUsage = `
-            Welcome to the User Management API! Here are the available endpoints and how to use them:
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>User Management API</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            line-height: 1.6;
+                        }
+                        h1 {
+                            color: #333;
+                        }
+                        pre {
+                            background: #f4f4f4;
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                            overflow-x: auto;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Welcome to the User Management API!</h1>
+                    <p>Here are the available endpoints and how to use them:</p>
 
-            1. Register New User:
-               - Endpoint: POST /register-new-user
-               - Description: Registers a new user with name, email, link to photo(optional), password, phone, and optional bio.
-               - Request Body: 
-                 {
-                     "name": "string",
-                     "email": "string",
-                     "password": "string",
-                     "phone": "string",
-                     "photo": "string",
-                     "bio": "string"
-                 }
-               - Response: Returns the created user object and a JWT token.
+                    <h2>1. Register New User:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> POST /register-new-user<br>
+                        <strong>Description:</strong> Registers a new user with name, email, link to photo (optional), password, phone, and optional bio.<br>
+                        <strong>Request Body:</strong>
+                    </p>
+                    <pre>
+    {
+        "name": "string",
+        "email": "string",
+        "password": "string",
+        "phone": "string",
+        "photo": "string",
+        "bio": "string"
+    }
+                    </pre>
+                    <p><strong>Response:</strong> Returns the created user object and a JWT token.</p>
 
-            2. Get All Users:
-               - Endpoint: GET /get-all-user
-               - Description: Retrieves all users. Admin users can see all users; others see only public profiles.
-               - Headers: Authorization: Bearer <token>
-               - Response: Returns a list of users.
+                    <h2>2. Get All Users:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> GET /get-all-user<br>
+                        <strong>Description:</strong> Retrieves all users. Admin users can see all users; others see only public profiles.<br>
+                        <strong>Headers:</strong> Authorization: Bearer &lt;token&gt;<br>
+                        <strong>Response:</strong> Returns a list of users.
+                    </p>
 
-            3. Login Existing User:
-               - Endpoint: POST /login-existing-user
-               - Description: Logs in an existing user using email and password.
-               - Request Body:
-                 {
-                     "email": "string",
-                     "password": "string"
-                 }
-               - Response: Returns the user object and a JWT token.
+                    <h2>3. Login Existing User:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> POST /login-existing-user<br>
+                        <strong>Description:</strong> Logs in an existing user using email and password.<br>
+                        <strong>Request Body:</strong>
+                    </p>
+                    <pre>
+    {
+        "email": "string",
+        "password": "string"
+    }
+                    </pre>
+                    <p><strong>Response:</strong> Returns the user object and a JWT token.</p>
 
-            4. Get Profile Details:
-               - Endpoint: GET /get-profile-detail
-               - Description: Retrieves the profile details of the logged-in user.
-               - Headers: Authorization: Bearer <token>
-               - Response: Returns the user profile.
+                    <h2>4. Get Profile Details:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> GET /get-profile-detail<br>
+                        <strong>Description:</strong> Retrieves the profile details of the logged-in user.<br>
+                        <strong>Headers:</strong> Authorization: Bearer &lt;token&gt;<br>
+                        <strong>Response:</strong> Returns the user profile.
+                    </p>
 
-            5. Edit Profile Details:
-               - Endpoint: PATCH /edit-profile-detail
-               - Description: Edits the profile details of the logged-in user.
-               - Headers: Authorization: Bearer <token>
-               - Query Parameters: photo, name, bio, phone, email
-               - Response: Returns the updated user profile.
+                    <h2>5. Edit Profile Details:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> PATCH /edit-profile-detail<br>
+                        <strong>Description:</strong> Edits the profile details of the logged-in user.<br>
+                        <strong>Headers:</strong> Authorization: Bearer &lt;token&gt;<br>
+                        <strong>Query Parameters:</strong> photo, name, bio, phone, email<br>
+                        <strong>Response:</strong> Returns the updated user profile.
+                    </p>
 
-            6. Change Password:
-               - Endpoint: PATCH /change-password
-               - Description: Changes the password of the logged-in user.
-               - Headers: Authorization: Bearer <token>
-               - Query Parameters: oldPassword, newPassword
-               - Response: Returns the updated user profile.
+                    <h2>6. Change Password:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> PATCH /change-password<br>
+                        <strong>Description:</strong> Changes the password of the logged-in user.<br>
+                        <strong>Headers:</strong> Authorization: Bearer &lt;token&gt;<br>
+                        <strong>Query Parameters:</strong> oldPassword, newPassword<br>
+                        <strong>Response:</strong> Returns the updated user profile.
+                    </p>
 
-            7. Change Profile Visibility:
-               - Endpoint: PATCH /change-visibility
-               - Description: Changes the profile visibility of the logged-in user from public to private or vice versa.
-               - Headers: Authorization: Bearer <token>
-               - Query Parameters: password, isPublic
-               - Response: Returns the updated user profile.
+                    <h2>7. Change Profile Visibility:</h2>
+                    <p>
+                        <strong>Endpoint:</strong> PATCH /change-visibility<br>
+                        <strong>Description:</strong> Changes the profile visibility of the logged-in user from public to private or vice versa.<br>
+                        <strong>Headers:</strong> Authorization: Bearer &lt;token&gt;<br>
+                        <strong>Query Parameters:</strong> password, isPublic<br>
+                        <strong>Response:</strong> Returns the updated user profile.
+                    </p>
 
-            Visit the respective endpoints with the required parameters to use the functionalities.
+                    <p>Visit the respective endpoints with the required parameters to use the functionalities.</p>
+                </body>
+                </html>
         `;
-        res.status(200).json(apiUsage);
+        res.status(200).send(apiUsage);
     } catch (error) {
         console.log("Error -> ", error);
         res.status(400).json(error)
