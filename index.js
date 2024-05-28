@@ -12,6 +12,14 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+app.get("/", (req, res)=>{
+    try {
+        res.status(200).json("Home Page");
+    } catch (error) {
+        console.log("Error -> ", error);
+        res.status(400).json(error)
+    }
+})
 // Mount the user routes at the /users endpoint
 app.use("/users", UserRouter);
 
